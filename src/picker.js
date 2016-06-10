@@ -1535,7 +1535,12 @@ RangePickerCtrl.prototype.endTimeSelected = function(time){
 
 RangePickerCtrl.prototype.setNgModelValue = function(startDate,divider,endDate) {
     var self = this;
-    var range = {startDate: startDate.format(self.scope.format) , endDate: endDate.format(self.scope.format)};
+    var range = {
+		start: startDate,
+		end: endDate,
+		startDate: startDate.format(self.scope.format),
+		endDate: endDate.format(self.scope.format)
+	};
     self.rangeSelectCall({range: range});
     self.ngModelCtrl.$setViewValue(startDate.format(self.scope.format)+' '+ divider +' '+endDate.format(self.scope.format));
     self.ngModelCtrl.$render();    
