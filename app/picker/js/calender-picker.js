@@ -9,26 +9,25 @@ function DatePickerDir($timeout,picker,$mdMedia,$window){
       require: '^ngModel',
       replace:true,
       scope :{
-	      	initialDate : "@",
-	      	minDate:"=",
+	      	initialDate : "=",
+	      	minDate	:"=",
 	      	maxDate:"=",
 	      	format:"@",
 	      	mode:"@",	      	
 	      	startDay:"@",
 	      	closeOnSelect:"@",
-	      	weekStartDay:"@"
+	      	weekStartDay:"@",
+	      	disableYearSelection: "@"
 	    },
 	    templateUrl:"picker/date-picker.html",
 		link : function(scope,element,att,ngModelCtrl){
-
 			setViewMode(scope.mode);
-
 			scope.okLabel = picker.okLabel;
 			scope.cancelLabel = picker.cancelLabel;			
 
 			scope.$mdMedia =$mdMedia;
 			scope.currentDate = isNaN(ngModelCtrl.$viewValue)  ? moment(): ngModelCtrl.$viewValue ;
-			
+			 
 			function setViewMode(mode){
 				switch(mode) {
 				    case 'date':
@@ -93,27 +92,26 @@ function DatePickerDir($timeout,picker,$mdMedia,$window){
 	}
 }
 
-function TimePickerDir1($timeout,picker){
+function TimePickerDir($timeout,picker,$mdMedia,$window){
 	return {
 	  restrict : 'E',
       require: '^ngModel',
       replace:true,
       scope :{
-	      	initialDate : "@",
-	      	format:"@",
-	      	mode:"@",	      	
-	      	startDay:"@",
-	      	closeOnSelect:"@"
-	    },
-	    templateUrl:"picker/date-picker.html",
-		link : function(scope,element,att,ngModelCtrl){
+	    initialDate : "@",
+	    format:"@",
+	    mode:"@",	      	
+	    closeOnSelect:"@"
+	},
+	templateUrl:"picker/time-picker.html",
+	link : function(scope,element,att,ngModelCtrl){
 			setViewMode(scope.mode)
 		    
 		    scope.okLabel = picker.okLabel;
 		    scope.cancelLabel = picker.cancelLabel;
 
 			scope.currentDate = isNaN(ngModelCtrl.$viewValue)  ? moment(): ngModelCtrl.$viewValue ;
-
+			scope.$mdMedia =$mdMedia;
 			function setViewMode(mode){
 				switch(mode) {
 				    case 'date-time':
@@ -137,8 +135,7 @@ function TimePickerDir1($timeout,picker){
 						scope.selectedDate =date;
 					}
 					if(!angular.isUndefined(scope.selectedTime)){	
-						var timeSplit = scope.selectedTime.split(':');
-						date.hour(timeSplit[0]).minute(timeSplit[1]);
+						date.hour(scope.selectedTime.hour()).minute(scope.selectedTime.minute());
 					}
 					scope.currentDate =scope.selectedDate;
 					ngModelCtrl.$setViewValue(date.format(scope.format));
@@ -156,8 +153,7 @@ function TimePickerDir1($timeout,picker){
 					scope.selectedDate =date;
 				}
 				if(!angular.isUndefined(scope.selectedTime)){	
-					var timeSplit = scope.selectedTime.split(':');
-					date.hour(timeSplit[0]).minute(timeSplit[1]);
+					date.hour(scope.selectedTime.hour()).minute(scope.selectedTime.minute());
 				}
 				scope.currentDate =scope.selectedDate;
 				ngModelCtrl.$setViewValue(date.format(scope.format));
@@ -179,7 +175,7 @@ function TimePickerDir1($timeout,picker){
 var app = angular.module('smDateTimeRangePicker');
 
 app.directive('smDatePicker',['$timeout','picker','$mdMedia','$window',DatePickerDir]);
-app.directive('smTimePickern',['$timeout','picker',TimePickerDir1]);
+app.directive('smTimePicker',['$timeout','picker','$mdMedia','$window',TimePickerDir]);
 
 
 })();

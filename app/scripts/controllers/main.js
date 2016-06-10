@@ -5,12 +5,11 @@
         vm.minDate = moment().subtract(1,'M').format('MM-DD-YYYY');
         vm.maxDate = moment().add(1,'M').format('MM-DD-YYYY');
 
-        console.log(vm.minDate);
         vm.hours = [1,2,3,4,5,6,7,8,9,10,11,12];
 
-        vm.currentDate = moment();  
+        vm.currentDate = '10-15-2015';  
         var options = {
-          mode : 'date-time',
+          mode : 'date',
           view : 'DATE',
           format : 'MM-DD-YYYY',
           minDate : '03-10-2016',
@@ -22,8 +21,7 @@
         vm.currentDate1 = moment();  
         var options1 = {
           mode : 'date-time',
-          view : 'DATE',
-          format : 'MM-DD-YYYY',
+          format : 'MM-DD-YYYY HH:mm',
           minDate : '03-10-2016',
           maxDate : null,    
           weekStartDay :'Sunday'
@@ -31,12 +29,10 @@
 
         vm.showCalander = function(ev){
           options.targetEvent = ev;
-          smDateTimePicker(vm.currentDate,options).then(function(selectedDate) {
+          smDateTimePicker(vm.currentDate,options)
+          .then(function(selectedDate) {
+
             vm.currentDate = selectedDate;
-            var ele = document.getElementsByClassName("md-scroll-mask");
-            if(ele.length!==0){ 
-                angular.element(ele).remove();
-            }            
           });          
         }
 
@@ -79,6 +75,13 @@
           });          
         };
         
+        vm.dayofPaySelected = function(range){
+          vm.rangeObj = range;
+        }
+
+        vm.dayofPay2Selected = function(range){
+          vm.rangeObj2 = range;
+        }
 
         function buildToggler(navID) {
           var debounceFn =  $mdUtil.debounce(function(){
@@ -90,6 +93,10 @@
           return debounceFn;
         }
         vm.toggleLeft = buildToggler('left');
+
+        vm.save = function(){
+          console.log(vm.employee);
+        }
         
     }
 

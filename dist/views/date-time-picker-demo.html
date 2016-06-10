@@ -1,6 +1,6 @@
-<form name="empForm" >
+<form name="empForm"  ng-init="vm.employee.dateOfBirth='10-10-2015'" novalidate="true" ng-submit="vm.save()">
     <md-content   layout-padding class="md-whiteframe-z2" >
-        <div layout="row">
+       <div layout="row">
             DateTime picker, week start date is Monday    
         </div>
         <div  layout="row"> 
@@ -12,6 +12,7 @@
                     no-float 
                     flex="50"
                     flex-sm="100"
+                    disable-year-selection="true"
                     flex-xs="100"                          
                     is-required="true" 
                     format="MM-DD-YYYY HH:mm"
@@ -132,7 +133,7 @@
         <div layout="column"  class="picker-container" style="width:315px;">
             <div  class="container md-whiteframe-z2" style="background: #84ffff;">  
                 <sm-calender 
-                    ng-model="selectedDate"
+                    ng-model="vm.selectedDate"
                     data-mode="{{mode}}" 
                     data-min-date="minDate" 
                     data-max-date="maxDate" 
@@ -143,6 +144,6 @@
             </div>                
         </div>
         
-
-    </md-content>
+<!--         <md-button type="submit" class="md-primary md-raised">save</md-button> -->
+   </md-content>
 </form>

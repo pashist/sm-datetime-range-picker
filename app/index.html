@@ -9,10 +9,12 @@
     <!-- bower:css -->
     <!-- endbower -->
     <!-- build:css -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">    
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="demoApp">
+  <body ng-app="demoApp" ng-clock>
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -50,7 +52,7 @@
 
         </md-sidenav>
         <md-content layout="column" layout-fill class="right-container">
-          <md-toolbar layout="row"  class="md-whiteframe-z2 animated fadeInDown md-accent" >
+          <md-toolbar layout="row"  class="md-whiteframe-z2 animated fadeInDown" >
             <div class="md-toolbar-tools" >
               <span class="md-headline">Date Time Picker</span>
               <md-button aria-label="Open Sidebar" hide-gt-md class="md-icon-button" ng-click="vm.toggleLeft()">
@@ -88,13 +90,19 @@
         <script src="menu/menu.controller.js"></script>
         <script src="menu/menu.link.directive.js"></script>
         <script src="menu/menu.service.js"></script>
-        <script src="menu/menu.toggle.directive.js"></script>        
-        <script src="picker/range-picker.js"></script>
-        <script src="picker/calender-date.js"></script>
-        <script src="picker/calender-hour.js"></script>
-        <script src="picker/calender-picker.js"></script>
-        <script src="picker/time-picker.js"></script>        
-        <script src="picker/date-picker-service.js"></script>        
+        <script src="menu/menu.toggle.directive.js"></script>  
+
+        <script src="picker/js/provider.js"></script>
+        <script src="picker/js/calender-date.js"></script>
+        <script src="picker/js/calender-hour.js"></script>
+        <script src="picker/js/calender-picker.js"></script>
+        <script src="picker/js/date-picker-service.js"></script>
+        <script src="picker/js/date-time-picker.js"></script>
+        <script src="picker/js/range-picker.js"></script>        
+        <script src="picker/js/sm-time-picker.js"></script>                
+        <script src="picker/js/time-picker.js"></script>                
+
+
         <!-- endbuild -->
 </body>
 </html>

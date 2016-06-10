@@ -10,6 +10,7 @@ function TimePicker(){
       scope :{
 	      	initialTime : "@",
 	      	format:"@",
+	      	timeSelectCall : '&'	      	
 	    },
 	   	controller:["$scope","$timeout",TimePickerCtrl],
 	    controllerAs : 'vm',
@@ -19,28 +20,48 @@ function TimePicker(){
 	        var calCtrl = ctrls[1];
 	        calCtrl.configureNgModel(ngModelCtrl);
 
-			scope.$on('$destroy',function(){
-			   element.remove();
-			});
 		}      
 	}
 }
 
 var TimePickerCtrl = function($scope,$timeout){
 	var self  = this;
+	self.uid = Math.random().toString(36).substr(2,5);
 	self.$scope = $scope;
 	self.$timeout = $timeout;
-	self.initialDate = $scope.initialDate; 	//if calender to be  initiated with specific date 
+	self.initialDate = $scope.initialTime; 	//if calender to be  initiated with specific date 
 	self.format = $scope.format;
-	self.hourCells =[];
+	self.hourItems =[];
 	self.minuteCells =[];
-	self.moveCalenderAnimation='';
 	self.format = angular.isUndefined(self.format) ? 'HH:mm': self.format;
 	self.initialDate =	angular.isUndefined(self.initialDate)? moment() : moment(self.initialDate,self.format);
 	self.currentDate = self.initialDate.clone();
-	self.init();
+	self.hourSet =false;
+	self.minuteSet = false;
+
 	self.show=true;
+	self.init();
 }
+
+TimePickerCtrl.prototype.init = function(){
+	var self = this;
+	self.buidHourCells();
+	self.buidMinuteCells();
+	self.headerDispalyFormat = "HH:mm";
+	self.showHour();
+};
+
+TimePickerCtrl.prototype.showHour = function() { 
+	var self = this;
+
+	self.hourTopIndex = 22;
+	self.minuteTopIndex	= (self.initialDate.minute() -0) + Math.floor(7 / 2);	
+    //self.yearTopIndex = (self.initialDate.year() - self.yearItems.START) + Math.floor(self.yearItems.PAGE_SIZE / 2);	
+//	self.hourItems.currentIndex_ = (self.initialDate.hour() - self.hourItems.START) + 1;
+};
+
+
+
 
 
  TimePickerCtrl.prototype.configureNgModel = function(ngModelCtrl) {
@@ -58,27 +79,24 @@ var TimePickerCtrl = function($scope,$timeout){
     self.ngModelCtrl.$render();
   };
 
-TimePickerCtrl.prototype.init = function(){
-	var self = this;
-	self.buidHourCells();
-	self.buidMinuteCells();
-	self.headerDispalyFormat = "HH:mm";
-};
+
 
 
 TimePickerCtrl.prototype.buidHourCells = function(){
 	var self = this;
+
 	for (var i = 0 ; i <= 23; i++) {
 		var hour={
 			hour : i,
 			isCurrent :(self.initialDate.hour())=== i 
 		}
-		self.hourCells.push(hour);
+		self.hourItems.push(hour);
 	};	
 };
 
 TimePickerCtrl.prototype.buidMinuteCells = function(){
 	var self = this;
+	self.minuteTopIndex	= self.initialDate.minute();
 	for (var i = 0 ; i <= 59; i++) {
 		var minute = {
 			minute : i,
@@ -102,13 +120,26 @@ TimePickerCtrl.prototype.selectDate = function(d,isDisabled){
 TimePickerCtrl.prototype.setHour = function(h){
 	var self = this;
 	self.currentDate.hour(h);
-	self.setNgModelValue(self.currentDate);	
+	self.setNgModelValue(self.currentDate);
+	self.hourSet =true;
+	if(self.hourSet && self.minuteSet){
+		self.$scope.timeSelectCall({time: self.currentDate});
+		self.hourSet=false; 
+		self.minuteSet=false;
+	}	
 }
 
 TimePickerCtrl.prototype.setMinute = function(m){
 	var self = this;
 	self.currentDate.minute(m);
 	self.setNgModelValue(self.currentDate);		
+	self.minuteSet =true;	
+	if(self.hourSet && self.minuteSet){
+		self.$scope.timeSelectCall({time: self.currentDate});
+		self.hourSet=false; 
+		self.minuteSet=false;		
+	}	
+
 }
 
 TimePickerCtrl.prototype.selectedDateTime = function(){

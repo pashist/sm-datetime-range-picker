@@ -67,7 +67,8 @@
             text-align: left; }
 
 .date-picker {
-  width: 300px; }
+  width: 300px;
+  height: 270px; }
   .date-picker .year-container {
     width: 300px;
     animation: slideInDown 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
@@ -157,12 +158,13 @@
 .range-picker {
   width: 310px;
   background-color: #fff; }
-  .range-picker .header {
-    font-size: calc($font-size + 2); }
-    .range-picker .header .date-display {
+  .range-picker .md-toolbar-tools {
+    font-size: calc(13px + 2); }
+    .range-picker .md-toolbar-tools .date-display {
       width: 130px;
-      padding: 2px; }
-    .range-picker .header .divider-display {
+      padding: 2px;
+      text-align: center; }
+    .range-picker .md-toolbar-tools .divider-display {
       width: 20px;
       font-size: 13px;
       padding: 2px; }
@@ -179,7 +181,7 @@
       text-align: center;
       line-height: 35px; }
       .range-picker .custom-select.show-calender > .tab-head span {
-        color: #ede8e8;
+        color: #ccc1c1;
         width: 50%; }
         .range-picker .custom-select.show-calender > .tab-head span.active {
           animation-property: border-bottom;
@@ -388,7 +390,8 @@
             text-align: left; }
 
 .date-picker {
-  width: 300px; }
+  width: 300px;
+  height: 270px; }
   .date-picker .year-container {
     width: 300px;
     animation: slideInDown 1s cubic-bezier(0.06, 0.61, 0.04, 1.03);
@@ -478,12 +481,13 @@
 .range-picker {
   width: 310px;
   background-color: #fff; }
-  .range-picker .header {
-    font-size: calc($font-size + 2); }
-    .range-picker .header .date-display {
+  .range-picker .md-toolbar-tools {
+    font-size: calc(13px + 2); }
+    .range-picker .md-toolbar-tools .date-display {
       width: 130px;
-      padding: 2px; }
-    .range-picker .header .divider-display {
+      padding: 2px;
+      text-align: center; }
+    .range-picker .md-toolbar-tools .divider-display {
       width: 20px;
       font-size: 13px;
       padding: 2px; }
@@ -500,7 +504,7 @@
       text-align: center;
       line-height: 35px; }
       .range-picker .custom-select.show-calender > .tab-head span {
-        color: #ede8e8;
+        color: #ccc1c1;
         width: 50%; }
         .range-picker .custom-select.show-calender > .tab-head span.active {
           animation-property: border-bottom;
@@ -1156,7 +1160,8 @@ md-sidenav {
             max-height: 0px;
             opacity: 0; }
           md-sidenav.main-left-menu .side-menu li .menu-toggle-list li a {
-            font-size: 13px; }
+            font-size: 13px;
+            text-align: left; }
         md-sidenav.main-left-menu .side-menu li a {
           margin: 0;
           display: flex;

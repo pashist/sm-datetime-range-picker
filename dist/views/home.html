@@ -1,12 +1,33 @@
 <md-content class="md-whiteframe-z2" layout-padding>
-	<div layout="row" > 
-		<h2 class="md-headline">Wel Come to Date Time Picker</h2>
+
+	<div layout="column" > 
+		<h2 flex class="md-headline">Welcome to Date Time Picker</h2>
+		<h5 flex class="md-title">Support by <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> repo</h5>
 	</div>	
 	<div layout="column" > 
 		<p style="font-size:16px;">
 			smPicker allows you to pick date and time and Range .  				
 		</p>
 	</div>		
+	<div layout="column">
+		<p style="font-size:16px;">
+			TODO:
+		</p>
+
+	<ul layout-margin layout-padding style="margin:10px;list-style-type:decimal;">
+		<li >refector code base</li>
+		<li style="text-decoration:line-through">reduce html used </li>
+		<li style="text-decoration:line-through">create files per components</li>
+		<li >close all issue from git hub </li>
+		<li style="text-decoration:line-through">remove button to navigate between time and date for range picker</li>
+		<li>allow to set month </li>
+		<li style="text-decoration:line-through">allow to pick year range date and date time.</li>
+		<li>three ways to initialize date picker, on foucs, inline button click and via service.</li>
+		<li>keep all functionality from existing picker.</li>
+		<li>Improve documantation  </li>
+	</ul>
+	
+	</div>
 	<div  layout="column" >
 		<h2 class="md-headline">How to Install</h2>
 		<code ><p>bower install --save smDateTimeRangePicker</p></code>
@@ -44,19 +65,47 @@
 
 				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;picker.setDivider('To');
 				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;picker.setMonthNames(["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]);
-				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;picker.setRangeDefaultList(['Today',
-            'Last 7 Days',
-            'This Month',
-            'Last Month',
-            'This Quarter',
-            'Year To Date',
-            'This Year', 
-            'Custome Range']);
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;picker.setRangeDefaultList([
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{	
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; label:'Today',
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; startDate:moment().startOf('day'),
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; endDate:moment().endOf('day')
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  label:'Last 7 Days',
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  startDate: moment().subtract(7,'d'),
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  endDate:moment()
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			            },
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{	
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  label:'This Month',
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  startDate:moment().startOf('month'), 
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  endDate: moment().endOf('month')
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  label:'Last Month',
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  startDate:moment().subtract(1,'month').startOf('month'),
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  endDate: moment()
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  label: 'This Quarter',
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  startDate: moment().startOf('quarter'),
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  endDate: moment().endOf('quarter')
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  label:  'Year To Date',
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  startDate:  moment().startOf('year'),
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  endDate:  moment()
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  label:  'This Year',
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  startDate:  moment().startOf('year'),
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  endDate:  moment().endOf('year')
+				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+				</br>&nbsp;&nbsp;&nbsp;]);
 				</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;picker.setRangeCustomStartEnd(['Start Date', 'End Date']);      
 				</br>&nbsp;&nbsp;&nbsp;}
 		</p>
 
 		</code>
 	</div>		
-
 </md-content>		
